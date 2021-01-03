@@ -1,0 +1,15 @@
+.fast{
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+#themecolors  .selectors {
+  cursor: pointer;
+}
+#google-btn{
+  align-items:  center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
