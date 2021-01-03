@@ -1,10 +1,9 @@
-import Swal from 'sweetalert2';
+
 import { Router } from '@angular/router';
 import {FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { UsuarioService } from '../../service/usuario.service';
-
-
+import swal from 'sweetalert2'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -43,7 +42,7 @@ export class RegisterComponent  {
     this.usuario.crearUsuario(this.myForm.value).subscribe( resp => {
      this.router.navigateByUrl('/');
     }, err => {
-      Swal.fire('Error', err.error.msg, 'error');
+      swal.fire('Error', err.error.msg, 'error');
     });
 
 

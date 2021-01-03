@@ -1,5 +1,5 @@
 import swal from 'sweetalert2';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService} from '../../service/usuario.service';
@@ -14,7 +14,7 @@ declare const gapi: any;
 export class LoginComponent  implements OnInit  {
    public loginForm: FormGroup;
    public auth2: any;
-  constructor(private router: Router, private fb: FormBuilder, private usuario: UsuarioService) {
+  constructor(private router: Router, private fb: FormBuilder, private usuario: UsuarioService, private zone: NgZone) {
    this.loginForm = this.crearMyForm();
    }
   ngOnInit(): void {
@@ -75,7 +75,10 @@ attachSignin(element) {
      (googleUser) => {
       const id_token = googleUser.getAuthResponse().id_token;
     this.usuario.loginGoogle(id_token).subscribe(res => {
-      this.router.navigateByUrl('/');
+      this.zone.run(() => {
+        this.router.navigateByUrl('/');
+      })
+
     })
 
       }, (error)  => {
